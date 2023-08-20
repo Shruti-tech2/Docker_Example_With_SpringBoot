@@ -40,9 +40,12 @@ TO PUSH IMAGE INTO DOCKER HUB:
 
 NOTE
 ---------
-* delete image -> 	`docker rmi <repositoryName>:<tag>`
-* list of all running containers(with your image inside)->	`docker ps`
-* Stop running container->		`docker stop <containerName>`
+* `docker rmi <repositoryName>:<tag>` -> delete image
+* `docker ps` -> list of all running containers(with your image inside)
+* `docker stop <containerName>`-> Stop running container
+* `docker rm -f $(docker ps -aq)` -> remove all running containers.
+* `docker volume ls` -> list all volumes
+* `docker volume rm <volume_name>` -> delete volume(as remove all tables details from mysql)
 
 CASES:
 Case1:
