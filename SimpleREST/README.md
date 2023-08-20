@@ -46,9 +46,16 @@ NOTE
 * `docker rm -f $(docker ps -aq)` -> remove all running containers.
 * `docker volume ls` -> list all volumes
 * `docker volume rm <volume_name>` -> delete volume(as remove all tables details from mysql)
+* `docker compose ps -q` -> list down the container id, runnng in compose
+* `docker inspect -f '{{ .Mounts }}' <container_id>` -> list down the volumes details included in running container.
 
 CASES:
 Case1:
 ::::::::::	Here suppose we have removed our image from our system. And we are trying to run the same image.
-		Then it will docker will first check for image in local and as the image is not there so it will , check that image(with perticular)
+		Then docker will first check for image in local and as the image is not there so it will , check that image(with perticular)
 		tag in Docker hub(Registry) for same image and pull it automatically(if present in hub) and run it.
+Case2:
+::::::::::	Here remember if spring project use mysql connection, run mysql and spring -project containers by `docker -compose.yml`. And where spring-app 
+		depends on mysql-db service (EXAMPLE FOR SAME IS IN BLOG_APP_APIS Project).
+Case3:
+:::::::::	Here when for once mysql running container fill tables as per sql_scripts in volumes, which are included in mysql service; the very next time if have 		updated compose file with extra volumes or scripts in volumes, it will not update mysql's table. So for that first try to delete volume of mysql and 		again run composer file.
